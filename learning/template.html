@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href = "navigation.css" rel="stylesheet" type="text/css">
+    <title>WEB TUTORIALS</title>
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Pacifico|Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<body>
+
+<div name = "navigation">
+    <ul class="nav">
+        <li><a href="../index.html">Home</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropButton">Tutorials</a>
+            <div class="dropdown-content">
+                <a href="../HTML.html">HTML</a>
+                <a href="../CSS.html">CSS</a>
+                <a href="../JavaScript.html">JavaScript</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropButton">Tests</a>
+            <div class="dropdown-content">
+                <a href="../Quiz's/quiz.html">HTML Test</a>
+                <a href="../Quiz's/quizCSS.html">CSS Test</a>
+                <a href="../Quiz's/quizJavaScript.html">JavaScript Test</a>
+            </div>
+        </li>
+        <li id="contact"><a href="../contact.html">Contact</a></li>
+    </ul>
+</div>
+<div id="html nav">
+    <ul class="nav">
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropButton">Basics:</a>
+            <div class="dropdown-content">
+                <a id="HelloWorld" onClick=" navigate(this.id)">Hello World</a> <!--<a onclick="dispHelloWorld();" href=../CSS_content/animations.html>Hello World</a>-->
+                <a id="DocumentTypes" onClick=" navigate(this.id)">Document Types</a>
+                <a id="CommentsTags" onClick=" navigate(this.id)">Comments and Tags</a>
+                <a id="Links" onClick=" navigate(this.id)">Links</a>
+                <a id="ParagraphsLists" onClick=" navigate(this.id)">Paragraphs and Lists</a>
+                <a id="Tables" onClick=" navigate(this.id)">Tables</a>
+                <a id="Forms" onClick=" navigate(this.id)">Forms</a>
+
+            </div>
+        </li>
+
+    </ul>
+</div>
+
+
+<p id="serverResponse"></p>
+<script>
+
+    function navigate(clicked_id){
+
+        const xhr = new XMLHttpRequest();
+
+        xhr.onload = function(){
+            const serverResponse = document.getElementById("serverResponse");
+            serverResponse.innerHTML = this.responseText;
+        }
+
+        xhr.open("POST","parser.php");
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send("data=" + clicked_id);
+    }
+</script>
+</body>
