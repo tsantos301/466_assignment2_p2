@@ -1,10 +1,11 @@
-
+<!--http://192.168.64.2/learning/template.html-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link href = "navigation.css" rel="stylesheet" type="text/css">
     <title>WEB TUTORIALS</title>
+    <link href="main.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Pacifico|Shadows+Into+Light" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 </head>
@@ -12,12 +13,12 @@
 
 <div name = "navigation">
     <ul class="nav">
-        <li><a href="../index.html">Home</a></li>
+        <li class="navList"><a href="../index.html">Home</a></li>
         <li class="dropdown">
             <a href="javascript:void(0)" class="dropButton">Tutorials</a>
             <div class="dropdown-content">
-                <a href="../HTML.html">HTML</a>
-                <a href="../CSS.html">CSS</a>
+                <a href="HTMLmain.html">HTML</a>
+                <a href="CSSmain.html">CSS</a>
                 <a href="../JavaScript.html">JavaScript</a>
             </div>
         </li>
@@ -29,7 +30,7 @@
                 <a href="../Quiz's/quizJavaScript.html">JavaScript Test</a>
             </div>
         </li>
-        <li id="contact"><a href="../contact.html">Contact</a></li>
+        <li class ="navList" id="contact"><a href="../contact.html">Contact</a></li>
     </ul>
 </div>
 <div id="html nav">
@@ -51,12 +52,34 @@
     </ul>
 </div>
 
+<div id="introduction">
+<h1 id="h1">Introduction:</h1>
+<p id="main">
+    This is a primer in a series of tutorials that will calmly introduce you to the very basics
+    of <strong>H</strong>yper<strong>T</strong>ext <strong>M</strong>ark-up <strong>L</strong>anguage. Eventually, you'll easily know enough to create your own HTML web page.<br>
+    <br>
+    <i>The following are the main sections and ideas for this tutorial:</i>
+</p>
+<div class="no_resize" style="margin-bottom: 400px;">
+    <ul>
+        <li> Hello World - easing into your first page. </li>
+        <li> Document Types - Learning the foundations of a web page</li>
+        <li> Comments and Tags - Making readable code, and understanding tags</li>
+        <li> Links - intro to navigating the web</li>
+        <li> Paragraphs and lists - intro to some page essentials</li>
+        <li> Tables - getting a little bit more technical</li>
+        <li> Forms - a common item used in many sites </li>
+
+    </ul>
+</div>
+</div>
 
 <p id="serverResponse"></p>
 <script>
 
     function navigate(clicked_id){
-
+        var introHide = document.getElementById("introduction");
+        introHide.style.display = "none";
         const xhr = new XMLHttpRequest();
 
         xhr.onload = function(){

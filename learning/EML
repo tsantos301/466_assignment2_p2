@@ -92,9 +92,9 @@
 
 <subtitle>The Following are some examples of tags:</subtitle>
 <example class=\"example\">
-    <html></html>
-    <p></p>
-    <body></body>
+    &lt;html&gt;&lt;/html&gt;
+    &lt;p&gt;&lt;/p&gt;
+    &lt;body&gt;&lt;/body&gt;
 </example>
 "
 
@@ -109,24 +109,24 @@
      hyperlinks from plain text. <strong>Below is an example of creating hyperlinks:</strong>
  </text>
  <example class=\"example\">
-     <!DOCTYPE html>
-     <html>
-     <head>
-         <meta charset = \"utf-8\">
-         <title> Exercise 2.8 </title>
-     </head>
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset = \"utf-8\"&gt;
+        &lt;title&gt; Exercise 2.8 &lt;/title&gt;
+    &lt;/head&gt;
 
-     <body>
-     <h1> My Favorite Daily Deals </h1>
-     <ul>
-         <li><a href = \"http://www.amazon.ca\"> Amazon</a></li>
-         <li><a href = \"http://www.ebay.ca\"> eBay </a> </li>
-         <li><a href = \"http://www.aliexpress.com\"> Aliexpress </a></li>
-     </ul>
+    &lt;body&gt;
+    &lt;h1&gt; My Favorite Daily Deals &lt;/h1&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href = \"http://www.amazon.ca\"&gt; Amazon&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href = \"http://www.ebay.ca\"&gt; eBay &lt;/a&gt; &lt;/li&gt;
+        &lt;li&gt;&lt;a href = \"http://www.aliexpress.com\"&gt; Aliexpress &lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
 
-     </body>
+    &lt;/body&gt;
 
-     </html>
+    &lt;/html&gt;
 
  </example>
 

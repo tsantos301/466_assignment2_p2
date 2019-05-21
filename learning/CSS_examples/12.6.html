@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12.6</title>
+    <style type="text/css">
+        body{
+            text-align: center;
+        }
+        button{
+            background-color: darkgrey;
+            padding: 15px 32px;
+            text-align: center;
+            /*text-decoration: chartreuse;*/
+            display: inline-block;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <select style="width: 280px" id="bgc" name="bgcselector">
+        <option selected="">Please Select a background color: </option>
+        <option>darkgrey</option> <!--<option value = "darkgrey">darkgrey</option>-->
+        <option>darkgreen</option>
+        <option>darkblue</option>
+        <option>yellow</option>
+        <option>gold</option>
+        <option>pink</option>
+
+    </select>
+
+    <select style="width: 280px" id="fontSel" name="fontselector">
+        <option selected="">Please Select a font: </option>
+        <option>SanSerif</option>
+        <option>Serif</option>
+        <option>Helvetica</option>
+    </select>
+
+    <p id='paragraph'> How much wood, would a woodchuck chuck, if a woodchuck could chuck wood?</p>
+
+    <script type="text/javascript" >
+        var sel = document.getElementById('bgc');
+        sel.addEventListener("change", changeBackground);
+
+        var sel2 = document.getElementById('fontSel');
+        sel2.addEventListener("change", changeFont);
+
+        function changeBackground(){
+            var color = document.getElementById('bgc').value;
+            document.bgColor = color;
+        }
+
+        function changeFont(){
+            var font = document.getElementById('fontSel').value;
+            document.getElementById('paragraph').style.fontFamily = font;
+        }
+    </script>
+
+    <h1><span id="dispCount"></span></h1>
+</div>
+</body>
+</html>

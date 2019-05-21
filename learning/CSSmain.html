@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href = "navigation.css" rel="stylesheet" type="text/css">
+    <title>CSS Tutorials</title>
+    <link href = "main.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Pacifico|Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href = "animations.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div name = "navigation">
+    <ul class = "nav">
+        <li><a href=index.html>Home</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropButton">Tutorials</a>
+            <div class="dropdown-content">
+                <a href="HTMLmain.html">HTML</a>
+                <a href="CSSmain.html">CSS</a>
+                <a href="../JavaScript.html">JavaScript</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropButton">Tests</a>
+            <div class="dropdown-content">
+                <a href="quiz.html">HTML Test</a>
+                <a href="../Quiz's/quizCSS.html">CSS Test</a>
+                <a href="../Quiz's/quizJavaScript.html">JavaScript Test</a>
+            </div>
+        </li>
+        <li id="contact"><a href="../contact.html">Contact</a></li>
+    </ul>
+</div>
+<div id="html nav">
+    <ul class="nav">
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropButton">Basics:</a>
+            <div class="dropdown-content">
+                <a id="Syntax" onClick=" navigate(this.id)">Syntax</a>
+                <a id="Backgrounds" onClick=" navigate(this.id)">Backgrounds</a>
+                <a id="MarginsPadding" onClick=" navigate(this.id)">Margins and Padding</a>
+                <a id="HeightWidth" onClick=" navigate(this.id)">Height and Width</a>
+                <a id="Boxing" onClick=" navigate(this.id)">Boxing Methodology</a>
+                <a id="Fonts" onClick=" navigate(this.id)">Fonts</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropButton">Advanced:</a>
+            <div class="dropdown-content">
+                <a id="Animations" onClick=" navigate(this.id)">Animations</a>
+            </div>
+        </li>
+    </ul>
+</div>
+<br>
+<div id="introduction">
+<h1 id="h1">Introduction:</h1>
+<p id="main">
+    This is a primer in a series of tutorials that will calmly introduce you to the very basics
+    of <strong>C</strong>ascading <strong>S</strong>tyle <strong>S</strong>heets. CSS describes how HTML elements are to
+    be displayed on screen, paper, or in other media and saves a lot of work. It can control the layout of multiple web
+    pages all at once. Eventually, you'll easily know enough to style your own HTML web pages.<br>
+    <br>
+    <i>The following are the main sections and ideas for this tutorial:</i>
+</p>
+<div class="no_resize" style="margin-bottom: 300px;">
+    <ul>
+        <li> Syntax - easing into the language. </li>
+        <li> Backgrounds - changing the background of a web page</li>
+        <li> Margins and Padding - adjusting indentation and border distance</li>
+        <li> Height and Width - adjusting the height and width of elements</li>
+        <li> Boxing Methodology - intro to some page essentials</li>
+        <li> Fonts - Importing special fonts into a web page</li>
+
+    </ul>
+</div>
+
+</div>
+<p id="serverResponse"></p>
+<script>
+
+    function navigate(clicked_id){
+        var introHide = document.getElementById("introduction");
+        introHide.style.display = "none";
+
+        //var backgroundChange = document.getElementById();
+        if(clicked_id == "Backgrounds"){
+            document.body.style.backgroundImage = "url('rock.png')";
+        }else if(clicked_id == "Animations"){
+            document.body.style.background = "black";
+        }else{
+            document.body.style.backgroundImage = "none";        }
+
+        const xhr = new XMLHttpRequest();
+
+        xhr.onload = function(){
+            const serverResponse = document.getElementById("serverResponse");
+            serverResponse.innerHTML = this.responseText;
+        }
+
+        xhr.open("POST","parser.php");
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send("data=" + clicked_id);
+    }
+</script>
+</body>

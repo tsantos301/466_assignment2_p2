@@ -1,24 +1,25 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
 
 function parser($document){
     //~~~~~~~~~~~~~~~opening headers~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //Replace title with h1
-    $document = str_replace("<title>", "<h1>", $document);
+    $document = str_replace("<title", "<h1", $document);
 
     //Replace Subtitles with h2
-    $document = str_replace("<subtitle>", "<h2>", $document);
+    $document = str_replace("<subtitle", "<h2", $document);
 
     //Replace text with p
-    $document = str_replace("<text>", "<p>", $document);
+    $document = str_replace("<text", "<p", $document);
 
     //Replace examples with xmp
-    $document = str_replace("<example>", "<xmp>", $document);
+    $document = str_replace("<example", "<pre", $document);
 
     //Replace bullets with ul
-    $document = str_replace("<bullets>", "<ul>", $document);
+    $document = str_replace("<bullets", "<ul", $document);
 
     //Replace bullet with li
-    $document = str_replace("<bullet>", "<li>", $document);
+    $document = str_replace("<bullet", "<li", $document);
 
     //~~~~~~~~~~~~~~~Closing headers~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //Replace title with h1
@@ -31,25 +32,30 @@ function parser($document){
     $document = str_replace("</text>", "</p>", $document);
 
     //Replace examples with xmp
-    $document = str_replace("</example>", "</xmp>", $document);
+    $document = str_replace("</example>", "</pre>", $document);
 
     //Replace bullets with ul
     $document = str_replace("</bullets>", "</ul>", $document);
 
     //Replace bullet with li
     $document = str_replace("</bullet>", "</li>", $document);
+
+    //debugging
     //echo htmlspecialchars($document);
+    //echo $document;
     return $document;
 }
 
 $db = mysqli_connect('localhost','root','','eLearning') or die("could not connect to database");
-echo "data: ";
-echo var_dump($_POST);
-echo $_POST['data'];
+
+//debugging
+//echo "data: ";
+//echo var_dump($_POST);
+//echo $_POST['data'];
 
 //go to new page
 if(isset($_POST['data'])) {
-    echo "page change";
+
     $newPageID = $_POST['data'];
 
     //MAKE NEW QUERY AND EXECUTE IT

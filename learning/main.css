@@ -1,0 +1,30 @@
+pre{
+    font-family: 'Quicksand', sans-serif;
+
+}
+/*li{*/
+/*    width: 1000px;*/
+/*    list-style-type: inside;*/
+/*}*/
+
+h1,h2{
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
+
+p{
+    font-family: 'Quicksand', sans-serif;
+    text-size: 100px;
+}
+
+body{
+    font-family: 'Pacifico', cursive;
+    font-size: 30px;
+    padding: 10px;
+    /*text-align: center;*/
+}
+
+iframe{
+    display:block;
+    margin: 0 auto;
+}

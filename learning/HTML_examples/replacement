@@ -1,0 +1,14 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang=\"en\"&gt;
+&lt;head&gt;
+    &lt;meta charset=\"UTF-8\"&gt;
+    &lt;title&gt;Forms.&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form&gt;
+    &lt;input type=\"radio\" name=\"gender\" value=\"male\" checked&gt; Male&lt;br&gt;
+    &lt;input type=\"radio\" name=\"gender\" value=\"female\"&gt; Female&lt;br&gt;
+    &lt;input type=\"radio\" name=\"gender\" value=\"other\"&gt; Other
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
