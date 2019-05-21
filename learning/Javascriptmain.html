@@ -1,10 +1,9 @@
-<!--http://192.168.64.2/learning/template.html-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link href = "navigation.css" rel="stylesheet" type="text/css">
-    <title>WEB TUTORIALS</title>
+    <title>Javascript Tutorials</title>
     <link href="main.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Pacifico|Shadows+Into+Light" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -38,14 +37,11 @@
         <li class="dropdown">
             <a href="javascript:void(0)" class="dropButton">Basics:</a>
             <div class="dropdown-content">
-                <a id="HelloWorld" onClick=" navigate(this.id)">Hello World</a> <!--<a onclick="dispHelloWorld();" href=../CSS_content/animations.html>Hello World</a>-->
-                <a id="DocumentTypes" onClick=" navigate(this.id)">Document Types</a>
-                <a id="CommentsTags" onClick=" navigate(this.id)">Comments and Tags</a>
-                <a id="Links" onClick=" navigate(this.id)">Links</a>
-                <a id="ParagraphsLists" onClick=" navigate(this.id)">Paragraphs and Lists</a>
-                <a id="Tables" onClick=" navigate(this.id)">Tables</a>
-                <a id="Forms" onClick=" navigate(this.id)">Forms</a>
-
+                <a id="FirstScript" onClick=" navigate(this.id)">First Script</a>
+                <a id="Innerhtml" onClick=" navigate(this.id)">innerHTML</a>
+                <a id="Fundamentals" onClick=" navigate(this.id)">Fundamentals</a>
+                <a id="Functions" onClick=" navigate(this.id)">Functions</a>
+                <a id="Objects" onClick=" navigate(this.id)">Objects</a>
             </div>
         </li>
 
@@ -53,28 +49,26 @@
 </div>
 
 <div id="introduction">
-<h1 id="h1">Introduction:</h1>
-<p id="main">
-    This is a primer in a series of tutorials that will calmly introduce you to the very basics
-    of <strong>H</strong>yper<strong>T</strong>ext <strong>M</strong>ark-up <strong>L</strong>anguage. Eventually, you'll easily know enough to create your own HTML web page.<br>
+<h1>This is an introduction to the programming language used for web - Javascript.</h1>
+<br>
+<p> JavaScript is easy to learn, especially if you have any prior programming experience.
     <br>
-    <i>The following are the main sections and ideas for this tutorial:</i>
+    The basic elements of JavaScript that we will cover are as follows:
 </p>
-<div class="no_resize" style="margin-bottom: 400px;">
+<div class="no_resize" style="margin-bottom: 300px">
     <ul>
-        <li> Hello World - easing into your first page. </li>
-        <li> Document Types - Learning the foundations of a web page</li>
-        <li> Comments and Tags - Making readable code, and understanding tags</li>
-        <li> Links - intro to navigating the web</li>
-        <li> Paragraphs and lists - intro to some page essentials</li>
-        <li> Tables - getting a little bit more technical</li>
-        <li> Forms - a common item used in many sites </li>
-
+        <li> Hello World - easing into your first JavaScript </li>
+        <li> innerHTML - accessing html elements using JavaScript</li>
+        <li> Basics - intro to the fundamentals</li>
+        <li> Functions - writing your first function</li>
+        <li> Objects - intro to Object Oriented programming with JavaScript</li>
     </ul>
 </div>
+<br>
 </div>
 
 <p id="serverResponse"></p>
+
 <script>
 
     function navigate(clicked_id){
@@ -92,4 +86,5 @@
         xhr.send("data=" + clicked_id);
     }
 </script>
+
 </body>
