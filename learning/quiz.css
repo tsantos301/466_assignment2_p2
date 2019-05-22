@@ -1,0 +1,110 @@
+.container{
+    height: 500px;
+    width: 1000px;
+    position: relative;
+    margin: 0px auto;
+    text-align: left;
+    padding: 10px;
+    border: 4px solid black;
+}
+
+.title{
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    color: #2E2E2E;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.quiz_questions{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 30px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    padding: 30px;
+    background: #2E2E2E;
+    border-radius: 20px;
+    margin: 10px 0 10px 0;
+    color: white;
+}
+
+.option{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    width: 470px;
+    display: inline-block;
+    padding: 10px 0 10px 15px;
+    vertical-align: middle;
+    background-color: antiquewhite ;
+    margin: 10px 0 10px 10px;
+    color: black;
+    border-radius: 20px;
+}
+
+.progressButton{
+    font-family: 'Quicksand', sans-serif;
+    font-style: oblique;
+    font-size: 20px;
+    cursor: pointer; /*changes the mouse cursor when hovered over.*/
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border: black;
+    background-color: #2E2E2E;
+    margin: 20px;
+    float: none;
+    color: white;
+    width: 300px;
+    height: 40px;
+    border-radius: 30px; /* Used to make the shape curved*/
+
+}
+
+.option:hover{
+    background: #2E2E2E;
+    color: white;
+}
+
+.progressButton:hover{
+    background: antiquewhite;
+    color: black;
+}
+
+.result{
+    height: 100px;
+    text-align: center;
+    font-size: 75px;
+}
+#corrections{
+    height: 250px;
+    text-align: center;
+    font-size: 75px;
+}
+
+.option input:checked .option{
+    background: #08038C;
+    color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
