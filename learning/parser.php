@@ -54,32 +54,7 @@ $db = mysqli_connect('localhost','root','','eLearning') or die("could not connec
 //echo $_POST['data'];
 
 //go to new page
-if(isset($_POST['data'])) {
-
-    $newPageID = $_POST['data'];
-
-    //MAKE NEW QUERY AND EXECUTE IT
-    $newPageQuery = "SELECT Content FROM pages WHERE Lesson = '$newPageID'";
-    $result = mysqli_query($db, $newPageQuery);
-
-
-    if (mysqli_num_rows($result) > 0) {
-
-        while($row = mysqli_fetch_assoc($result)) {
-            //Create HTML page
-            $parsedPage = parser($row['Content']);
-            $doc = new DOMDocument();
-            $doc->loadHTML($parsedPage);
-            echo $doc->saveHTML();
-        }
-    } else {
-        echo "Could not find that page";
-    }
-
-    //unset($_POST);
-
-}
-
+include('server.php')
 
 ?>
 

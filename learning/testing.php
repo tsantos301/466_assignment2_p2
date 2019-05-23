@@ -4,96 +4,51 @@
         echo strtoupper($post_var)."<br>";
     }
 
-function object_to_array($data)
-{
-    if(is_array($data) || is_object($data))
-    {
-        $result = array();
-
-        foreach($data as $key => $value) {
-            $result[$key] = $this->object_to_array($value);
-        }
-
-        return $result;
-    }
-
-    return $data;
-}
 
 ?>
 
 <?php
 
-//$xml=simplexml_load_string($myXMLData) or die("Error: Cannot create object");
-//print_r($xml);
+$db = mysqli_connect('localhost','root','','eLearning') or die("could not connect to database");
+print_r($_POST);
+if(isset($_POST['quizSelect'])) {
+    $quizID = $_POST['quizSelect'];
 
- $newString="";
- $questions = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
-    <quiz>
-    
-   <problem>
-   <question> Which HTML tag is used to enclose JavaScript?</question>
-   <option1> &lt;html&gt;</option1>
-   <option2> &lt;JavaScript&gt;</option2>
-   <option3> &lt;js&gt; </option3>
-   <option4> &lt;script&gt; </option4>
-   <answer>4</answer>
-   </problem>
-   
-    <problem>
-    <question> Which syntax is correct to change the following HTML element with id 123?</question>
-    <option1> document.getElementByName(\"123\").innerHTML = \"Hello World!\";</option1>
-    <option2> doc.getElementByName(\"123\").innerHTML = \"Hello World!\";</option2>
-    <option3> document.getElementById(\"123\").innerHTML = \"Hello World!\";</option3>
-    <option4> doc.getElementById(\"123\").innerHTML = \"Hello World!\";</option4>
-    <answer>3</answer>
-    </problem>
+    //MAKE NEW QUERY AND EXECUTE IT
+    $quizQuery = "SELECT Content FROM pages WHERE Lesson = '$quizID'";
+    $result = mysqli_query($db, $quizQuery);
 
-    <problem>
-    <question>How do you write \"Hello World\" in an alert box?</question>
-    <option1> alert(\"Hello World\");</option1>
-    <option2> msgBox(\"Hello World\");</option2>
-    <option3> message(\"Hello World\");</option3>
-    <option4> ALERTALERT(\"Hello World\");</option4>
-    <answer>1</answer>
-    </problem>
-    
-     <problem>
-   <question>What is the correct syntax for referring to an external script called &quot;helloWorld.js&quot;</question>
-   <option1> &lt;script name=&quot;helloWorld.js&quot;&gt;</option1>
-   <option2> &lt;script id=&quot;helloWorld.js&quot;&gt;</option2>
-   <option3> &lt;script href=&quot;helloWorld.js&quot;&gt;</option3>
-   <option4> &lt;script src=&quot;helloWorld . js&quot;&gt;</option4>
-   <answer>4</answer>
-   </problem>
-   
-    <problem>
-    <question>How do you create a function named thisFunction in JavaScript?</question>
-    <option1> function:thisFunction(){...}</option1>
-    <option2> function thisFunction(){...}</option2>
-    <option3> function = thisFunction{...}</option3>
-    <option4> function thisFunction{...}</option4>
-    <answer>2</answer>
-    </problem>
-    </quiz>";
+    if (mysqli_num_rows($result) > 0) {
 
+        while($row = mysqli_fetch_assoc($result)) {
+          $questions = $row['Content'];
+        }
+    } else {
+        echo "Could not find that page";
+    }
 
+    unset($_POST);
 
-$xml=simplexml_load_string($questions) or die("Error: Cannot create object"); // creates simple xml object xml
-
-//$xmlArray = object_to_array($xml);
-
-foreach ($xml->children() as $books) {
-    echo htmlspecialchars($books->question . ", ");
-    $newString.="question".$books->question . ", ";
-    echo htmlspecialchars($books->option1 . ", ");
-    echo htmlspecialchars($books->b . ", ");
-    echo htmlspecialchars($books->c . ", ");
-    echo htmlspecialchars($books->d . ", ");
-    echo htmlspecialchars($books->answer . "<br>");
 }
 
-echo $newString;
+$newString="";
+
+
+
+$xml=simplexml_load_string($questions); // creates simple xml object xml
+
+//debugging
+//foreach ($xml->children() as $books) {
+//    echo htmlspecialchars($books->question . ", ");
+//    $newString.="question".$books->question . ", ";
+//    echo htmlspecialchars($books->option1 . ", ");
+//    echo htmlspecialchars($books->b . ", ");
+//    echo htmlspecialchars($books->c . ", ");
+//    echo htmlspecialchars($books->d . ", ");
+//    echo htmlspecialchars($books->answer . "<br>");
+//}
+//
+//echo $newString;
 
 //send the quiz object to javascript
 echo '<script>';
@@ -114,10 +69,6 @@ echo '</script>';
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 </head>
 <body>
-<h2>POST XMLHttpRequest</h2>
-<p id="serverResponse"></p>
-</body>
-
 <ul class = "nav">
     <li><a class = "active" href="../index.html">Home</a></li>
     <li class="dropdown">
@@ -138,10 +89,18 @@ echo '</script>';
     </li>
     <li id="contact"><a href="../contact.html">Contact</a></li>
 </ul>
+<h2 class="title"> Please Select a Quiz</h2>
+<form action="testing.php" method="post" style="text-align: center">
+    <select name="quizSelect">
+        <option name="HTML" value="HTMLquiz" >HTML</option>
+        <option name="CSS" value="CSSquiz" >CSS</option>
+        <option name="Javascript" value="Javascriptquiz" >Javascript</option>
+    </select>
+    <input type="submit" value="Submit">
+</form>
+
 <br>
 <div id="quizContainer" class="container">
-    <div class="title"> JavaScript Basics Quiz</div>
-
     <div id="question" class="quiz_questions"></div>
     <br>
 
@@ -173,19 +132,9 @@ echo '</script>';
 <br>
 <div id="corrections" style="display:none"></div>
 
-
+</body>
 <script type="text/javascript">
-    // const xhr = new XMLHttpRequest();
-    //
-    // xhr.onload = function(){
-    //     const serverResponse = document.getElementById("serverResponse");
-    //     serverResponse.innerHTML = this.responseText;
-    // }
-    //
-    // xhr.open("POST","testing.php");
-    // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // xhr.send("name=domonic&message=hows it going");
-    //
+
     console.log("PHP object:");
     console.log(PHPquestions);
 

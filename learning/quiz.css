@@ -77,15 +77,13 @@
     height: 250px;
     text-align: center;
     font-size: 75px;
+    color: red;
 }
 
 .option input:checked .option{
     background: #08038C;
     color: #000;
 }
-
-
-
 
 
 
