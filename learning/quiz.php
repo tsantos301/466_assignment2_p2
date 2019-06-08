@@ -1,16 +1,8 @@
 <?php
-    echo var_dump($_POST);
-    foreach($_POST as $post_var){
-        echo strtoupper($post_var)."<br>";
-    }
+error_reporting(E_ERROR | E_PARSE);
 
+$db = mysqli_connect('localhost','root','Allen07150794y','eLearning') or die("could not connect to database");
 
-?>
-
-<?php
-
-$db = mysqli_connect('localhost','root','','eLearning') or die("could not connect to database");
-print_r($_POST);
 if(isset($_POST['quizSelect'])) {
     $quizID = $_POST['quizSelect'];
 
@@ -31,24 +23,18 @@ if(isset($_POST['quizSelect'])) {
 
 }
 
-$newString="";
-
-
-
 $xml=simplexml_load_string($questions); // creates simple xml object xml
 
 //debugging
 //foreach ($xml->children() as $books) {
 //    echo htmlspecialchars($books->question . ", ");
-//    $newString.="question".$books->question . ", ";
 //    echo htmlspecialchars($books->option1 . ", ");
-//    echo htmlspecialchars($books->b . ", ");
-//    echo htmlspecialchars($books->c . ", ");
-//    echo htmlspecialchars($books->d . ", ");
+//    echo htmlspecialchars($books->option2 . ", ");
+//    echo htmlspecialchars($books->option3 . ", ");
+//    echo htmlspecialchars($books->option4 . ", ");
 //    echo htmlspecialchars($books->answer . "<br>");
 //}
-//
-//echo $newString;
+
 
 //send the quiz object to javascript
 echo '<script>';
@@ -61,36 +47,30 @@ echo '</script>';
 <head>
     <meta charset="UTF-8">
     <title>Quiz's</title>
-    <!--math library for javascript for test results-->
-    <!--<script src="math.js" type="text/javascript"></script>-->
     <link href = "navigation.css" rel="stylesheet">
     <link href="quiz.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Pacifico|Shadows+Into+Light" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Indie+Flower|Just+Another+Hand|Stylish" rel="stylesheet">
 </head>
+
+<img id="logoIMG" src="logo.png" ><h2 id="logoText">Book-Worms Teaching Service</h2>
 <body>
 <ul class = "nav">
-    <li><a class = "active" href="../index.html">Home</a></li>
+    <li><a class = "active" href="home.html">Home</a></li>
     <li class="dropdown">
         <a href="javascript:void(0)" class="dropButton">Tutorials</a>
         <div class="dropdown-content">
-            <a href="../HTML.html">HTML</a>
-            <a href="../CSS.html">CSS</a>
-            <a href="../JavaScript.html">JavaScript</a>
+            <a href="HTMLmain.html">HTML</a>
+            <a href="CSSmain.html">CSS</a>
+            <a href="Javascriptmain.html">JavaScript</a>
         </div>
     </li>
-    <li class="dropdown">
-        <a href="javascript:void(0)" class="dropButton">Tests</a>
-        <div class="dropdown-content">
-            <a href=quiz.html>HTML Test</a>
-            <a href="../Quiz's/quizCSS.html">CSS Test</a>
-            <a href="quizJavaScript.html">JavaScript Test</a>
-        </div>
-    </li>
-    <li id="contact"><a href="../contact.html">Contact</a></li>
+    <li><a class = "active" href="quiz.php">Quiz's</a></li>
+    <li id="contact"><a href="contact.html">Contact</a></li>
 </ul>
-<h2 class="title"> Please Select a Quiz</h2>
-<form action="testing.php" method="post" style="text-align: center">
+<h2 class="title"> Please Select a Quiz:</h2>
+<form action="quiz.php" method="post" style="text-align: center">
     <select name="quizSelect">
         <option name="HTML" value="HTMLquiz" >HTML</option>
         <option name="CSS" value="CSSquiz" >CSS</option>
@@ -111,7 +91,7 @@ echo '</script>';
 
     <label class="option">
         <input type="radio" name="option" value="2" />
-        <span id="option2">test</span>
+        <span id="option2"></span>
     </label>
 
     <label class="option">
@@ -135,28 +115,13 @@ echo '</script>';
 </body>
 <script type="text/javascript">
 
-    console.log("PHP object:");
-    console.log(PHPquestions);
-
-
     var temp = Object.entries(PHPquestions);
-
-    console.log("Javascript array:");
-    console.log(temp);
-
     var questions = temp[0][1];
-
-    console.log("Inner content of array in new array:");
-    console.log(questions);
 
     // pull in all of the HTML elements we need to manipulate in javascript
     var currentQuestion = 0;
     var score = 0;
     var totQuestions = questions.length;
-
-    //debug
-    console.log(questions.length.toString());
-    //document.writeln(questions.length.toString());
 
     var container = document.getElementById('quizContainer');
     var questionEl = document.getElementById('question');
@@ -164,10 +129,6 @@ echo '</script>';
     var option2 = document.getElementById('option2');
     var option3 = document.getElementById('option3');
     var option4 = document.getElementById('option4');
-
-    //debug
-    //  document.write(questionEl.toString());
-
     var progressButton = document.getElementById('progressButton');
     var resultCont = document.getElementById('result');
     var correctionCont = document.getElementById('corrections');
@@ -186,7 +147,7 @@ echo '</script>';
 
         var selectedOption = document.querySelector('input[type=radio]:checked');
 
-        // if the user hasnt selected a choice do not let them continue on in the quiz
+        // if the user hasn't selected a choice do not let them continue on in the quiz
         if(!selectedOption){
             alert('You should at least guess! Please select an answer!');
             return;
@@ -217,9 +178,6 @@ echo '</script>';
             container.style.display = 'none';
             resultCont.style.display = '';
             correctionCont.style.display = '';
-            // document.writeln(score.valueOf());
-            // document.writeln(totQuestions.valueOf());
-            // document.writeln(math.fraction(score.valueOf(),totQuestions.valueOf()));
             var percent = ((score/totQuestions)*100).toFixed(2);
             resultCont.textContent = 'Your Grade: ' + score + '/' + totQuestions + '=' + percent + '%';
             correctionCont.textContent = "Incorrect Questions: "+ wrongArray;

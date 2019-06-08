@@ -46,7 +46,7 @@ function parser($document){
     return $document;
 }
 
-$db = mysqli_connect('localhost','root','','eLearning') or die("could not connect to database");
+$db = mysqli_connect('localhost','root','Allen07150794y','eLearning') or die("could not connect to database");
 
 //debugging
 //echo "data: ";
@@ -54,7 +54,24 @@ $db = mysqli_connect('localhost','root','','eLearning') or die("could not connec
 //echo $_POST['data'];
 
 //go to new page
-include('server.php')
+if(isset($_POST['data'])) {
+    $newPageID = $_POST['data'];
+    //MAKE NEW QUERY AND EXECUTE IT
+    $newPageQuery = "SELECT Content FROM pages WHERE Lesson = '$newPageID'";
+    $result = mysqli_query($db, $newPageQuery);
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            //Create HTML page
+            $parsedPage = parser($row['Content']);
+            $doc = new DOMDocument();
+            $doc->loadHTML($parsedPage);
+            echo $doc->saveHTML();
+        }
+    } else {
+        echo "Could not find that page";
+    }
+    //unset($_POST);
+}
 
 ?>
 
@@ -65,14 +82,6 @@ include('server.php')
 
 
     function navigate(clicked_id){
-
-        //alert(clicked_id);
-        // console.log(clicked_id);
-        // var xhttp = new XMLHttpRequest();
-        // xhttp.open("POST", "parser.php", true);
-        // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        // xhttp.send("data=" + clicked_id);
-        // console.log("do we go here");
 
         const xhr = new XMLHttpRequest();
 

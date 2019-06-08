@@ -2,7 +2,6 @@
 
 echo var_dump($_POST);
 if(isset($_POST['Javascript'])) {
-    echo ("ehhhhhh");
     $quizID = $_POST['Javascript'];
 
     //MAKE NEW QUERY AND EXECUTE IT
@@ -17,7 +16,4 @@ if(isset($_POST['Javascript'])) {
     } else {
         echo "Could not find that page";
     }
-
-    //unset($_POST);
-
 }
